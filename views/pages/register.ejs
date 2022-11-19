@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+    <script src="/socket.io/socket.io.js"></script>
+    <title>Registrarse</title>
+</head>
+
+<body>
+    <%- include('../partials/simpler-nav')%>
+        <section class="login-section">
+            <div class="left-text">
+                <h2>Garantía de calidad, solo en Sierra</h2>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum architecto quo quia recusandae totam odio quasi eius sint? Architecto, suscipit?</p>
+            </div>
+            <span class="vertical-bar"></span>
+            <div class="login-form">
+                <h2>Registrarse en Sierra</h2>
+                <form action="/register" method="post" enctype="multipart/form-data">
+                    <div>
+                        <input type="email" name="username" class="form-input" placeholder="Email">
+                        <input type="password" name="password" class="form-input" placeholder="Contraseña">
+                        <input type="text" name="name" class="form-input" placeholder="Nombre">
+                        <input type="text" name="address" class="form-input" placeholder="Dirección">
+                        <input type="text" name="phoneNumber" class="form-input" placeholder="Número de teléfono">
+                        <button type="button" class="button two" onclick="document.getElementById('avatar').click()">Cargar foto de perfil</button>
+                        <input type="file" style="display:none" accept=".png, .jpg" name="avatar" id="avatar">
+                    </div>
+                    <button type="submit" class="button three ">Registrarse</button>
+                    <p>¿Ya creaste una cuenta? <a class="redirect " href="/login ">Inicia sesión</a></p>
+                </form>
+            </div>
+        </section>
+</body>
+
+</html>
