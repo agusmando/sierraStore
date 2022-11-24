@@ -1,6 +1,6 @@
-const cartController = require('./cart');
 const { daoCarritos } = require('../src/daos/index');
-const { logError } = require('./middleware/logger-winston')
+const { logError } = require('./middleware/logger-winston');
+const User = require('../models/user');
 
 const getLoginView = (req, res) => {
     if (req.user) {
@@ -16,13 +16,15 @@ const sessionData = (req, res) => {
 }
 
 const loginAction = async(req, res) => {
+    let resultado;
     try {
-        const resultado = await daoCarritos.getCartProducts(req.user.cart);
-        if (resultado == null) {
-            await cartController.createCart(req, res);
-        }
+        resultado = await daoCarritos.getCartProducts(req.user.cart);
     } catch (error) {
-        logError.error('No se pudo crear el carrito ' + error)
+        logError.error('No se pudo obtener el carrito ' + error)
+    }
+    if (resultado == null) {
+        const newCartId = await daoCarritos.createCart();
+        await User.updateOne({ username: req.user.username }, { cart: newCartId })
     }
     res.redirect('/');
 }
